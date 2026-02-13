@@ -1,0 +1,48 @@
+services:
+  reverse-proxy:
+    image: traefik:v3.0
+    command:
+      - "--providers.docker"
+      - "--providers.docker.exposedbydefault=false"
+      - "--entrypoints.web.address=:80"
+      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+      - "--entryPoints.websecure.address=:443"
+      - "--entryPoints.websecure.transport.respondingTimeouts.readTimeout=300s"
+      - "--entryPoints.websecure.transport.respondingTimeouts.idleTimeout=300s"
+      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+      - "--certificatesresolvers.myresolver.acme.email=${ACME_EMAIL}"
+      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - letsencrypt:/letsencrypt
+      - /var/run/docker.sock:/var/run/docker.sock
+    networks:
+      - web-net
+
+  web:
+    build:
+      context: .
+    env_file:
+      - .env
+    environment:
+      - GITHUB_TOKEN=${GITHUB_TOKEN:-} # optional
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web-net"
+      - "traefik.http.routers.portfolio-web.rule=Host(`${DOMAIN}`)"
+      - "traefik.http.routers.portfolio-web.entrypoints=websecure"
+      - "traefik.http.routers.portfolio-web.tls.certresolver=myresolver"
+      - "traefik.http.services.portfolio-svc.loadbalancer.server.port=80"
+    restart: always
+    networks:
+      - web-net
+
+volumes:
+  letsencrypt:
+
+networks:
+  web-net:
+    name: web-net

@@ -1,0 +1,52 @@
+{
+  "name": "lastmiles-site",
+  "version": "1.0.0",
+  "description": "Personal portfolio website",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "flag-icons": "^7.5.0",
+    "lucide-react": "^0.563.0",
+    "node-fetch": "^3.3.2",
+    "ogl": "^1.0.11",
+    "open": "^11.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "scripts": {
+    "dev": "vite --port 3000 --host 0.0.0.0",
+    "start": "vite --port 3000 --host 0.0.0.0",
+    "build": "vite build",
+    "preview": "vite preview --port 3000 --host 0.0.0.0",
+    "fetch": "node scripts/fetch-repos.js",
+    "lint": "eslint src/",
+    "lint:fix": "eslint src/ --fix",
+    "lint:css": "stylelint 'src/**/*.css'",
+    "lint:css:fix": "stylelint 'src/**/*.css' --fix",
+    "docker:build": "docker build -t lastmiles-site .",
+    "docker:run": "docker run -p 80:80 lastmiles-site"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "^4.7.0",
+    "eslint": "^9.39.2",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "prop-types": "^15.8.1",
+    "stylelint": "^17.1.0",
+    "stylelint-config-standard": "^40.0.0",
+    "vite": "^6.3.6"
+  }
+}

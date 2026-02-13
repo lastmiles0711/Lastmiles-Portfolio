@@ -1,0 +1,63 @@
+/* Glass Effect */
+.glass-card {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--blur-md));
+  -webkit-backdrop-filter: blur(var(--blur-md));
+  border: var(--border-width) solid var(--glass-border);
+  transition: border-color var(--transition-base),
+              box-shadow var(--transition-base),
+              background var(--transition-base);
+}
+
+[data-theme="light"] .glass-card {
+  background: var(--glass-bg);
+  border: var(--border-width) solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+/* Gradient Border Link (shared nav pattern) */
+.gradient-border-link {
+  position: relative;
+  overflow: hidden;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  border-radius: var(--radius-md);
+  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end), var(--gradient-start));
+  cursor: pointer;
+  transition: color var(--transition-base), font-weight var(--transition-base);
+}
+
+.gradient-border-link span {
+  position: relative;
+  z-index: var(--z-raised);
+}
+
+.gradient-border-link::before {
+  content: '';
+  position: absolute;
+  inset: 1px;
+  background: var(--bg-secondary);
+  border-radius: calc(var(--radius-md) - 1px);
+  transition: var(--transition-slow);
+}
+
+.gradient-border-link::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, var(--gradient-start), var(--gradient-end), var(--gradient-start));
+  border-radius: var(--radius-md);
+  transition: var(--transition-slow);
+  opacity: 0;
+  filter: blur(var(--blur-xl));
+}
+
+.gradient-border-link.active {
+  color: var(--nav-active-text);
+  font-weight: 600;
+}
+
+.gradient-border-link.active::before {
+  opacity: var(--opacity-soft);
+}

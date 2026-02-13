@@ -1,0 +1,227 @@
+.social-links-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-2);
+  max-width: var(--max-w-lg);
+  margin: var(--space-4) auto 0;
+  width: 100%;
+}
+
+/* Social Card — compact horizontal pill */
+.social-card {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  background: var(--bg-secondary);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  color: var(--text-primary);
+  transition: transform var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+  overflow: hidden;
+  will-change: transform;
+}
+
+.social-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 0;
+}
+
+.social-card.discord::before { background: var(--social-discord); }
+.social-card.twitter::before { background: var(--social-twitter); }
+.social-card.twitch::before { background: var(--social-twitch); }
+.social-card.instagram::before { background: var(--social-instagram); }
+.social-card.steam::before { background: var(--social-steam); }
+
+.social-card:hover::before {
+  opacity: 0.10;
+}
+
+.social-card:hover {
+  transform: translateY(var(--lift-md));
+  border-color: var(--border-hover);
+  box-shadow: 0 4px 16px var(--glow-accent);
+}
+
+.social-card:focus {
+  outline: var(--border-width-md) solid var(--gradient-start);
+  outline-offset: var(--border-width-md);
+}
+
+/* Platform-specific hover border colors */
+.social-card.discord:hover { border-color: var(--social-discord); }
+.social-card.twitter:hover { border-color: var(--social-twitter); }
+.social-card.twitch:hover { border-color: var(--social-twitch); }
+.social-card.instagram:hover { border-color: var(--social-instagram); }
+.social-card.steam:hover { border-color: var(--social-steam); }
+
+/* Icon */
+.social-card-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform var(--transition-base),
+              color var(--transition-base);
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+/* Icons colored by platform */
+.social-card.discord .social-card-icon { color: var(--social-discord); }
+.social-card.twitter .social-card-icon { color: var(--social-twitter); }
+.social-card.twitch .social-card-icon { color: var(--social-twitch); }
+.social-card.instagram .social-card-icon { color: var(--social-instagram); }
+.social-card.steam .social-card-icon { color: var(--social-steam); }
+
+.social-card:hover .social-card-icon {
+  transform: scale(1.15);
+}
+
+/* Name */
+.social-card-name {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+}
+
+.social-card:hover .social-card-name {
+  color: var(--text-primary);
+}
+
+@media (min-width: 481px) {
+  .social-links-grid {
+    gap: var(--space-3);
+  }
+
+  .social-card {
+    padding: var(--space-2) var(--space-4);
+  }
+
+  .social-card-name {
+    font-size: var(--font-sm);
+  }
+}
+
+/* Contact Card */
+.contact-card {
+  max-width: var(--max-w-md);
+  margin-top: var(--space-4);
+  padding: var(--space-4) var(--space-6);
+  text-align: center;
+  transition: transform var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+  will-change: transform;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  border-radius: var(--radius-lg);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--card-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 0;
+}
+
+.contact-card:hover::before {
+  opacity: 0.04;
+}
+
+.contact-card:hover {
+  transform: translateY(var(--lift-md));
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 24px var(--glow-accent);
+}
+
+.contact-title {
+  margin: 0;
+  font-size: var(--font-lg);
+  font-weight: 700;
+  line-height: 1.4;
+  color: var(--text-primary);
+  position: relative;
+  z-index: 1;
+}
+
+.contact-email {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-3) var(--space-6);
+  background: var(--bg-secondary);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-pill);
+  text-decoration: none;
+  color: var(--text-primary);
+  font-weight: 600;
+  font-size: var(--font-sm);
+  transition: all var(--transition-base);
+  position: relative;
+  z-index: 1;
+}
+
+.email-icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--gradient-start);
+  transition: all var(--transition-base);
+}
+
+.contact-email:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-hover);
+  transform: scale(1.02);
+  box-shadow: 0 4px 16px var(--glow-accent);
+}
+
+.contact-email:hover .email-icon-wrapper {
+  transform: rotate(-12deg) scale(1.1);
+}
+
+.contact-email:active {
+  transform: scale(0.98);
+}
+
+.contact-reply-hint {
+  margin: 0;
+  font-size: var(--font-sm);
+  color: var(--text-tertiary);
+  font-style: italic;
+  position: relative;
+  z-index: 1;
+}
+
+@media (min-width: 481px) {
+  .contact-card {
+    padding: var(--space-8);
+  }
+
+  .contact-email {
+    padding: var(--space-4) var(--space-8);
+    font-size: var(--font-base);
+  }
+}

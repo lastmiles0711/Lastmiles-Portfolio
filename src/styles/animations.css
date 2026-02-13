@@ -1,0 +1,32 @@
+@keyframes wave {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  25% {
+    transform: translateY(var(--lift-md));
+  }
+  50% {
+    transform: translateY(0);
+  }
+  75% {
+    transform: translateY(var(--lift-md));
+  }
+}
+
+@keyframes star-twinkle {
+  0% {
+    transform: scale(1);
+  }
+
+  40% {
+    transform: scale(1.2);
+  }
+
+  80% {
+    transform: scale(0.8);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

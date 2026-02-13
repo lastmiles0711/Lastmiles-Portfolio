@@ -1,0 +1,43 @@
+.background-container {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Galaxy background */
+.background-galaxy {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Fade transition for background changes */
+.background-container--transitioning {
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.background-container--visible {
+  opacity: 1;
+  transition: opacity var(--transition-slow);
+}
+
+/* Reduced motion preference — keep background visible but freeze animation */
+@media (prefers-reduced-motion: reduce) {
+  .background-container {
+    animation: none !important;
+  }
+
+  .background-galaxy,
+  .galaxy-container,
+  .galaxy-container canvas {
+    animation: none !important;
+  }
+}

@@ -1,0 +1,72 @@
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  width: 100%;
+  margin-top: var(--space-4);
+  justify-content: center;
+  align-items: center;
+  padding-bottom: var(--space-4);
+}
+
+/* Skill Icon Card */
+.skill-icon-card {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-md);
+  background: var(--bg-secondary);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--card-shadow);
+  transition: transform var(--transition-base),
+              border-color var(--transition-base),
+              background var(--transition-base);
+  will-change: transform;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.skill-icon-card:hover {
+  transform: translateY(var(--lift-md)) scale(1.1);
+  background: var(--bg-tertiary);
+  z-index: var(--z-dropdown);
+}
+
+.skill-icon-card img {
+  width: var(--icon-2xl);
+  height: var(--icon-2xl);
+  transition: transform var(--transition-base);
+}
+
+/* Skill tooltip uses global .tooltip--bottom; add multi-line layout */
+.skill-icon-card .tooltip {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.skill-name {
+  font-weight: 600;
+  font-size: var(--font-sm);
+  color: var(--text-primary);
+}
+
+.skill-level {
+  font-size: var(--font-2xs);
+  color: var(--text-tertiary);
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .skills-grid {
+    gap: var(--space-8) var(--space-6);
+  }
+
+  .skill-level {
+    display: block;
+  }
+}

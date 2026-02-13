@@ -1,0 +1,548 @@
+.hero-section {
+  position: relative;
+  padding: calc(var(--header-height) + env(safe-area-inset-top, 0px) + var(--space-6)) var(--space-4) var(--space-4);
+  overflow: visible;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.hero-container {
+  max-width: var(--content-width);
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  z-index: var(--z-dropdown);
+}
+
+.hero-text {
+  margin-bottom: var(--space-8);
+}
+
+.hero-text h1 {
+  font-size: var(--font-hero-md);
+  margin-bottom: var(--space-6);
+  line-height: 1.2;
+}
+
+/* Hero heading slab: a non-glow, theme-aware highlight behind the entire heading */
+.hero-heading-slab {
+  display: inline-block;
+  max-width: calc(100% - var(--space-8));
+  padding: var(--space-4);
+  font-size: var(--font-hero-sm);
+  border-radius: var(--radius-lg);
+  background: var(--heading-slab-bg);
+  border: var(--border-width) solid var(--heading-slab-border);
+  color: var(--text-primary);
+  text-align: center;
+  line-height: 1.15;
+  z-index: var(--z-above);
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+  backdrop-filter: blur(var(--blur-sm));
+  box-shadow: none; /* explicit: no glow */
+  word-break: break-word;
+}
+
+.hero-heading-slab .name-highlight,
+.hero-heading-slab .discord-text {
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+@media (min-width: 481px) {
+  .hero-heading-slab {
+    padding: var(--space-8);
+    max-width: calc(100% - var(--space-12));
+  }
+}
+
+@media (min-width: 481px) {
+  .hero-section {
+    padding: calc(var(--header-height) + var(--space-6)) var(--space-6) var(--space-6);
+  }
+
+  .hero-text {
+    margin-bottom: var(--space-16);
+  }
+
+  .hero-text h1 {
+    font-size: var(--font-hero-lg);
+    margin-bottom: var(--space-8);
+  }
+}
+
+@media (min-width: 768px) {
+  .hero-text h1 {
+    font-size: var(--font-hero-xl);
+    margin-bottom: var(--space-12);
+  }
+}
+
+.text-highlight-subtle {
+  background: var(--highlight-bg);
+  padding: var(--space-1) var(--space-2);
+  border-radius: var(--radius-sm);
+  display: inline-block;
+}
+
+.hero-text p {
+  font-size: var(--font-lg);
+  color: var(--text-secondary);
+  max-width: var(--max-w-xl);
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Layout for hero description paragraph */
+.hero-desc-card {
+  display: inline-block;
+  padding: var(--space-4) var(--space-6);
+  border-radius: var(--radius-lg);
+}
+
+@media (min-width: 481px) {
+  .hero-desc-card {
+    padding: var(--space-6) var(--space-8);
+  }
+}
+
+/* Hero Visual */
+.hero-visual {
+  position: relative;
+  margin-top: 0;
+  width: 100%;
+  max-width: var(--content-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.glow-effect {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  max-width: var(--max-w-lg);
+  height: 400px;
+  background: conic-gradient(from 180deg at 50% 50%, var(--gradient-start) 0deg, var(--gradient-end) 180deg, var(--gradient-start) 360deg);
+  filter: blur(var(--blur-hero));
+  opacity: var(--opacity-muted);
+  border-radius: 50%;
+  z-index: var(--z-base);
+  pointer-events: none;
+}
+
+[data-theme="dark"] .glow-effect {
+  opacity: var(--opacity-subtle);
+}
+
+.hero-card-wrapper {
+  position: relative;
+  z-index: var(--z-raised);
+}
+
+/* Extra overrides for spacing inside hero card wrapper */
+.hero-card-wrapper .about-card.glass-card h2 {
+  margin-top: 0;
+  margin-bottom: var(--space-2);
+}
+.hero-card-wrapper .about-card.glass-card .section-desc {
+  margin-bottom: var(--space-6);
+}
+.about-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-6);
+  box-shadow: var(--card-shadow);
+  padding: var(--space-4) var(--space-4);
+  border-radius: var(--radius-lg);
+  border: var(--border-width) solid var(--border);
+  width: 100%;
+  max-width: 100%;
+  margin: var(--space-4) auto 0 auto;
+  box-sizing: border-box;
+}
+
+.about-card:hover {
+  border-color: var(--border-hover);
+}
+
+.profile-img {
+  width: var(--avatar-sm);
+  height: var(--avatar-sm);
+  object-fit: cover;
+  border-radius: 50%;
+  border: var(--border-width-lg) solid var(--border);
+  flex-shrink: 0;
+  margin-bottom: 0;
+}
+
+/* Mobile-First Stacked Layout */
+.about-info-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.about-column {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  gap: var(--space-2);
+}
+
+.info-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-1);
+  padding: var(--space-2) 0;
+  border-bottom: var(--border-width) solid var(--border);
+  font-size: var(--font-md);
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.info-label {
+  font-weight: 500;
+  color: var(--text-tertiary);
+  font-size: var(--font-sm);
+  min-width: auto;
+  text-align: left;
+}
+
+.languages span {
+  cursor: help;
+}
+
+.age-info small {
+  color: var(--text-tertiary);
+}
+
+.languages {
+  display: flex;
+  gap: var(--space-2);
+  font-size: var(--font-lg);
+}
+
+/* Tablet+ Styles */
+@media (min-width: 481px) {
+  .about-card {
+    padding: var(--space-4) var(--space-6);
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 768px) {
+  .about-card {
+    flex-direction: row;
+    align-items: center;
+    padding: var(--space-8) var(--space-12);
+    gap: var(--space-12);
+    max-width: 100%;
+    text-align: left;
+  }
+
+  .profile-img {
+    width: var(--avatar-lg);
+    height: var(--avatar-lg);
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .about-info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-4) var(--space-8);
+    width: 100%;
+    min-width: 0;
+  }
+
+  .about-column {
+    gap: var(--space-2);
+  }
+
+  .info-row {
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: var(--space-2);
+    padding: var(--space-2) 0;
+    text-align: left;
+  }
+
+  .info-label {
+    min-width: var(--avatar-sm);
+  }
+}
+
+/* About GitHub Button */
+.about-github-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-6);
+  background: var(--highlight-bg);
+  border: var(--border-width) solid var(--border);
+  border-radius: var(--radius-lg);
+  color: var(--text-primary);
+  font-weight: 500;
+  font-size: var(--font-sm);
+  text-decoration: none;
+  transition: transform var(--transition-base),
+              background var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+  margin-top: var(--space-2);
+}
+
+.about-github-btn:hover {
+  background: var(--bg-tertiary);
+  border-color: var(--border-hover);
+  transform: translateY(var(--lift-sm));
+  box-shadow: var(--card-shadow);
+}
+
+.about-github-btn svg {
+  flex-shrink: 0;
+}
+
+/* Friends Card */
+.friends-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4) var(--space-3);
+  border-radius: var(--radius-lg);
+  border: var(--border-width) solid var(--border);
+  box-shadow: var(--card-shadow);
+  margin-top: var(--space-3);
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.friends-card:hover {
+  border-color: var(--border-hover);
+}
+
+.friends-header {
+  text-align: center;
+}
+
+.friends-title {
+  margin: 0;
+  font-size: var(--font-lg);
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.friends-desc {
+  margin: 0;
+  font-size: var(--font-xs);
+  color: var(--text-tertiary);
+  text-align: center;
+  max-width: var(--max-w-md);
+}
+
+/* Friends Grid */
+.friends-grid {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+/* Individual Friend Card */
+.friend-card {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: var(--space-1);
+  padding: var(--space-2) var(--space-3);
+  border-radius: var(--radius-md);
+  border: var(--border-width) solid var(--border);
+  background: var(--bg-secondary);
+  text-decoration: none;
+  transition: transform var(--transition-base),
+              border-color var(--transition-base),
+              box-shadow var(--transition-base);
+  will-change: transform;
+  min-width: 140px;
+  flex: 1 1 140px;
+  max-width: 280px;
+  position: relative;
+  overflow: hidden;
+}
+
+.friend-top {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  z-index: 1;
+}
+
+.friend-info {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  min-width: 0;
+}
+
+.friend-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, var(--gradient-start), var(--gradient-end));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+  z-index: 0;
+}
+
+.friend-card:hover::before {
+  opacity: 0.06;
+}
+
+.friend-card:hover {
+  transform: translateY(var(--lift-md));
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 24px var(--glow-accent);
+}
+
+/* Avatar */
+.friend-avatar-wrapper {
+  position: relative;
+  z-index: 1;
+}
+
+.friend-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: var(--border-width-md) solid var(--border);
+  transition: all var(--transition-base);
+}
+
+.friend-card:hover .friend-avatar {
+  border-color: var(--gradient-start);
+  box-shadow: 0 0 16px var(--glow-accent);
+  transform: scale(1.08);
+}
+
+.friend-status {
+  position: absolute;
+  bottom: 1px;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gradient-start);
+  border: var(--border-width-md) solid var(--bg-secondary);
+}
+
+/* Name & Username */
+.friend-name {
+  font-size: var(--font-xs);
+  font-weight: 600;
+  color: var(--text-primary);
+  text-align: left;
+  line-height: 1.2;
+  transition: color var(--transition-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.friend-username {
+  font-size: var(--font-2xs);
+  color: var(--text-tertiary);
+  transition: color var(--transition-base);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.friend-bio {
+  font-size: var(--font-2xs);
+  color: var(--text-secondary);
+  text-align: left;
+  line-height: 1.3;
+  z-index: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  opacity: 0.8;
+  transition: opacity var(--transition-base);
+  margin-top: var(--space-1);
+}
+
+.friend-card:hover .friend-bio {
+  opacity: 1;
+}
+
+.friend-card:hover .friend-name {
+  color: var(--text-primary);
+}
+
+.friend-card:hover .friend-username {
+  color: var(--text-secondary);
+}
+
+.friend-card:focus {
+  outline: var(--border-width-md) solid var(--gradient-start);
+  outline-offset: var(--border-width-md);
+}
+
+@media (min-width: 481px) {
+  .friends-desc {
+    font-size: var(--font-sm);
+  }
+
+  .friend-avatar {
+    width: 42px;
+    height: 42px;
+  }
+
+  .friend-card {
+    min-width: 160px;
+    max-width: 300px;
+    padding: var(--space-3);
+  }
+
+  .friend-name {
+    font-size: var(--font-sm);
+  }
+
+  .friend-username {
+    font-size: var(--font-xs);
+  }
+}
+
+@media (min-width: 768px) {
+  .friends-card {
+    padding: var(--space-4) var(--space-6);
+    gap: var(--space-3);
+  }
+
+  .friends-title {
+    font-size: var(--font-xl);
+  }
+
+  .friend-avatar {
+    width: 48px;
+    height: 48px;
+  }
+}
